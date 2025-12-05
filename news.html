@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>cllub</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="topbar">
+
+            <div class="user-info">
+                <div class="username">Welcome <span class="blue" id="user-id"></span> !</div>
+                <div>Balance: <a href="index.html">[ add funds ]</a></div>
+                <div>Crab Rating: Restricted <a href="index.html" id="details-btn">[ details ]</a></div>
+                <div>Current Server time: 23:05:16</div>
+            </div>
+
+            <div class="btn-group">
+                <button class="lottery">Lottery $</button>
+                <button class="gift">🎁 My Gift</button>
+                <button class="logout" onclick="location.href='login.html'"><span
+                        class="glyphicon glyphicon-log-out"></span>
+                    Logout
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="nav-wrapper">
+            <ul class="navbar">
+                <li>
+                    <a href="news.html" class="nav-link">News</a>
+                </li>
+                <li class="blues"><a href="#" class="nav-link">Dumps</a></li>
+                <li class="green">CVV2</li>
+                <li class="cyan">Fullz</li>
+                <li>Wholesale</li>
+                <li>Cart</li>
+                <li>Orders</li>
+                <li class="active-red">Auction</li>
+                <li>Tools</li>
+                <li>Tickets</li>
+                <li>Help ▼</li>
+                <li class="gear">⚙</li>
+            </ul>
+        </div>
+
+
+        <div class="alert-box">
+            Your account is inactive. For activation you need <span class="blue">to top up your balance.</span><br>
+            Attention: inactive accounts for more than 5 days will be deleted automatically.<br>
+            Contact us on telegram:
+        </div>
+
+        <div class="deposit-box">
+            <div class="neon-green-msg">
+                WE LOST OUR DATABASE IN RECENT DATA BREACH, WE REQUEST ALL OLD USERS TO OPEN TICKET AFTER ACTIVATING
+                YOUR
+                ACCOUNT, SO WE CAN REINSTATE YOUR PREVIOUS BALANCE.
+            </div>
+
+            <div class="panel">
+                <div class="panel-title">Attention! Official domain list updated:</div>
+
+                <div class="domain-list">
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="panel-ft">
+                    <div class="ft-text">
+                        All other domains are scam sites. Do not search for random sites or you may get scammed.
+                    </div>
+                </div>
+            </div>
+
+            <div class="dfoot">
+                <div class="dfoot-row">
+                    <p class="blue">Fresh Updates and SALE</p>
+                    <div class="date" id="current-date"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let user = localStorage.getItem("loggedUser");
+
+        if (user) {
+            document.getElementById("user-id").textContent = user;
+        } else {
+            document.getElementById("user-id").textContent = "Guest";
+        }
+    </script>
+
+
+    <script>
+        function updateServerTime() {
+            const now = new Date();
+            const hh = String(now.getHours()).padStart(2, '0');
+            const mm = String(now.getMinutes()).padStart(2, '0');
+            const ss = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById("server-time").textContent =
+                `Current server time: ${hh}:${mm}:${ss}`;
+        }
+
+        // Update every second
+        updateServerTime();
+        setInterval(updateServerTime, 1000);
+    </script>
+
+    <script>
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+        document.getElementById("current-date").textContent = `${day}.${month}.${year}`;
+    </script>
+
+</body>
+
+</html>

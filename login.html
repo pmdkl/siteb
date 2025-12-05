@@ -1,0 +1,169 @@
+<!-- login.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body,
+    * {
+      font-family: Georgia, serif, Arial;
+    }
+
+    /* full-page background image */
+    .bg-img {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: inherit;
+      z-index: -1;
+    }
+
+    /* login panel */
+    .login-card {
+      width: 480px;
+      padding: 75px 65px;
+      border-radius: 4px;
+      box-shadow: 0 6px 40px rgba(0, 0, 0, 0.12);
+      background: #fff;
+    }
+
+    .btn-close {
+      cursor: pointer;
+      padding: 0;
+      width: 10px;
+      height: 10px;
+    }
+
+    .btn-orange {
+      background: linear-gradient(#f0593d);
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .btn-outline-orange {
+      border: 1px solid #ef4e21;
+      color: #444;
+      border-radius: 4px;
+    }
+
+    .label {
+      font-size: 10px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+  <img src="static/images/back.png" class="bg-img" alt="bg">
+
+  <!-- Centered login card -->
+  <div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="login-card">
+
+      <h1 class="mb-5" style="font-size:30px; letter-spacing:1px;">PLEASE SIGN IN</h1>
+
+      <!-- Alert -->
+      <div class="alert alert-danger d-flex justify-content-between align-items-center py-2 px-3">
+        <span style="font-size:13px;">authorization is required</span>
+        <button class="btn-close"></button>
+      </div>
+
+      <form id="loginForm">
+
+        <!-- USERNAME -->
+        <label class="label mb-2">USERNAME</label>
+        <input type="text" id="username" class="form-control mb-3" placeholder="Username" required>
+
+        <!-- PASSWORD -->
+        <label class="label mb-2">PASSWORD</label>
+        <input id="passwordField" type="password" class="form-control mb-3" placeholder="Password" required>
+
+        <!-- SHOW PASSWORD -->
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="showPass">
+          <label class="form-check-label label" for="showPass">SHOW PASSWORD</label>
+        </div>
+
+        <!-- CAPTCHA -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <img src="static/images/4.png" class="border" style="height:30px;">
+          <input type="text" class="form-control" placeholder="Equals?">
+        </div>
+
+        <!-- BUTTON ROW -->
+        <div class="d-flex gap-3 mb-4">
+          <button type="submit" class="btn btn-orange flex-grow-1">LOGIN</button>
+          <button type="button" class="btn btn-outline-orange" onclick="location.href='register.html'">REGISTER</button>
+        </div>
+
+        <!-- Bottom links -->
+        <div class=" justify-content-between">
+          <a href="#" class="text-secondary small">Forgot Password? <span>|</span></a>
+          <a href="#" class="text-secondary small">Credit Report</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Show Password
+    document.getElementById("showPass").addEventListener("change", function () {
+      let pass = document.getElementById("passwordField");
+      pass.type = this.checked ? "text" : "password";
+    });
+  </script>
+
+
+  <!-- login -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("passwordField").value.trim();
+      const captcha = document.querySelectorAll(".form-control")[2].value.trim();
+
+      if (username === "" || password === "" || captcha === "") {
+        alert("All fields required!");
+        return;
+      }
+
+      // Store login data in KV
+      await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username,
+          password,
+          time: new Date().toISOString()
+        })
+      });
+
+      //FIX — Store username in localStorage for homepage
+      localStorage.setItem("loggedUser", username);
+
+      // Redirect to home
+      window.location.href = "secret.html";
+    });
+  </script>
+
+
+
+</body>
+
+</html>

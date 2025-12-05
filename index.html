@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+
+
+</head>
+
+
+
+<body>
+
+
+
+    <div class="container">
+
+        <div class="topbar">
+
+            <div class="user-info">
+                <div class="username">Welcome <span class="blue" id="user-id"></span> !</div>
+                <div>Balance: <a href="#" id="add-funds-btn">[0.00 add funds ]</a></div>
+                <div>Crab Rating: Restricted <a href="#" id="details-btn">[ details ]</a></div>
+                <div>Current Server time: 23:05:16</div>
+            </div>
+
+            <div class="btn-group">
+                <button type="button" class="lottery" onclick="location.href='index.html'">Lottery $</button>
+                <button class="gift">🎁 My Gift</button>
+                <button class="logout" onclick="logoutUser()">
+                    <span class="glyphicon glyphicon-log-out"></span> Logout
+                </button>
+            </div>
+
+        </div>
+
+        <div class="nav-wrapper">
+            <ul class="navbar">
+                <li><a href="news.html" class="nav-link">News</a></li>
+                <li class="blues">Dumps</li>
+                <li class="green">CVV2</li>
+                <li class="cyan">Fullz</li>
+                <li>Wholesale</li>
+                <li>Cart</li>
+                <li>Orders</li>
+                <li class="active-red">Auction</li>
+                <li>Tools</li>
+                <li>Tickets</li>
+                <li>Help ▼</li>
+                <li class="gear">⚙</li>
+            </ul>
+        </div>
+
+        <div class="alert-box">
+            Your account is inactive. For activation you need
+            <span class="blue">to top up your balance.</span><br>
+            Attention: inactive accounts for more than 5 days will be deleted automatically.<br>
+            Contact us on telegram:
+        </div>
+
+        <div class="deposit-box" id="deposit-section">
+
+            <div class="wrapper">
+
+                <div class="info-text">
+                    <ul>
+                        <li>Minimum amount to deposit: <span style="color: black;">50 USD</span></li>
+                        <li>Get <span class="red">100%</span> bonus on every deposit over $500</li>
+                        <li>Processing fee: <span style="color: black;">4%</span><br><br></li>
+                    </ul>
+
+                    <div class="important">IMPORTANT</div>
+                </div>
+
+                <span class="warning-text">
+                    Never pay twice to the same crypto address.
+                    <span style="color: black;">Always get a new address.</span>
+                    One address - one deposit!
+                    <br>
+                </span>
+
+                <div class="crypto-row">
+
+                    <div class="crypto-box">
+                        <img src="static/images/bitcoin.png" alt="">
+                        <br>
+                        <a class="deposit-btn" data-upi="bc1qg9zz62jgyytzad0wlu0ll3hgj8m3skrmm2f9mn"
+                            data-qr="static/images/btc.png"><span class="glyphicon glyphicon-import"></span> Make
+                            Deposit
+                            <span style="color: rgb(247, 190, 19);">Bitcoin</span>
+                        </a>
+                    </div>
+
+
+                    <div class="crypto-box">
+                        <img src="static/images/Litecoin.png" alt="">
+                        <br>
+                        <a class="deposit-btn" data-upi="ltc1q4zh0nrtxdyj3wes5hmzknf4cdannjee7ffhlc4"
+                            data-qr="static/images/ltc.png"><span class="glyphicon glyphicon-import"></span> Make
+                            Deposit
+                            <span style="color: rgb(130, 130, 130);">Litecoin</span>
+                        </a>
+                    </div>
+
+                    <div class="crypto-box">
+                        <img src="static/images/dash.png" alt="">
+                        <br>
+                        <a class="deposit-btn" data-upi="XntTJCaDJjjkeGybLxGNxgzNLkLNRtrAXs"
+                            data-qr="static/images/dashh.png"><span class="glyphicon glyphicon-import"></span> Make
+                            Deposit
+                            <span style="color: rgb(6, 6, 132);">Dash</span>
+                        </a>
+                    </div>
+
+                    <div class="crypto-box">
+                        <img src="static/images/monero.png" alt="">
+                        <br>
+                        <a class="deposit-btn" data-upi="XntTJCaDJjjkeGybLxGNxgzNLkLNRtrAXs"
+                            data-qr="static/images/dashh.png"><span class="glyphicon glyphicon-import"></span> Make Deposit
+                            <span style="color: rgb(6, 6, 132);">Monero</span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div id="payment-box" class="payment-box" style="display:none;">
+
+                    <div class="pay-row">
+                        <div class="pay-qr">
+                            <img id="qr-image" src="" alt="QR Code">
+                        </div>
+
+                        <div class="pay-text">
+                            <p id="upi-address"></p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="unconfirmed">
+                <h4>Unconfirmed Transaction -</h4>
+                <span>- Bitcoin/Litecoin transactions await 2 confirmations on BTC/LTC network.
+                    Confirmation can take 20 minutes up to 1 day depending on fee.</span>
+            </div>
+
+            <hr>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>System</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+
+    </div>
+
+    <hr class="footer-separator">
+
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="">Earn money with us!</a>
+        </div>
+        <p>© 2025 Crab on security.</p>
+    </footer>
+
+
+    <!-- Popup Background -->
+    <div id="ratingModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-btn" id="closeModal">&times;</span>
+
+            <h2>Terms for receiving a free daily dump!</h2>
+
+            <ul>
+                <li>you made a purchase in the last 24 hours</li>
+                <li>you made a deposit within the last 24 hours</li>
+                <li>you don't have any outstanding credits/loans</li>
+                <li>minimum of $50 in combined deposits</li>
+            </ul>
+
+            <b>Disclaimer:</b>
+            <p>
+                Daily free dump is an expiring, randomly picked dump from the older databases.
+                There's no guarantee it will work and not region locked in your area. Creating a
+                ticket complaining about a free dump will void an ability to receive any future daily
+                gifts in my shop.
+            </p>
+
+            <div class="modal-actions">
+                <button class="primary-btn">Click here to receive your gift.</button>
+                <button class="close-btn2" id="closeModal2">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const modal = document.getElementById("ratingModal");
+        const detailsBtn = document.getElementById("details-btn");
+        const close1 = document.getElementById("closeModal");
+        const close2 = document.getElementById("closeModal2");
+
+        // Open popup
+        detailsBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            modal.style.display = "flex";
+        });
+
+        // Close popup (X button)
+        close1.addEventListener("click", () => modal.style.display = "none");
+
+        // Close popup (Close button)
+        close2.addEventListener("click", () => modal.style.display = "none");
+
+        // Click outside to close
+        modal.addEventListener("click", function (e) {
+            if (e.target === modal) modal.style.display = "none";
+        });
+    </script>
+
+
+    <script>
+        let user = localStorage.getItem("loggedUser");
+        if (!user) {
+            window.location.href = "login.html"; // redirect if not logged in
+        } else {
+            document.getElementById("user-id").textContent = user;
+        }
+    </script>
+
+
+
+    <script>
+        document.getElementById("add-funds-btn").addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("deposit-section").style.display = "block";
+
+            // Optional: scroll to the deposit section
+            document.getElementById("deposit-section").scrollIntoView({
+                behavior: "smooth"
+            });
+        });
+    </script>
+
+    <script>
+        const buttons = document.querySelectorAll(".deposit-btn");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+
+                // Get attributes from clicked button
+                const address = btn.getAttribute("data-upi");
+                const qr = btn.getAttribute("data-qr");
+
+                // Update payment box
+                document.getElementById("upi-address").innerText = address;
+                document.getElementById("qr-image").src = qr;
+
+                // Show payment box
+                document.getElementById("payment-box").style.display = "block";
+            });
+        });
+    </script>
+
+    <script>
+        function logoutUser() {
+            localStorage.removeItem("loggedUser"); // clear login
+            window.location.href = "login.html";   // go to login page
+        }
+    </script>
+
+    <script>
+        let logged = localStorage.getItem("loggedUser");
+
+        if (!logged) {
+
+            window.location.replace("login.html");
+        }
+    </script>
+
+
+</body>
+
+</html>

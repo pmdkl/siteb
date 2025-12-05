@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registration</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #efefef;
+      --muted: #777;
+      --accent: #3aa0d8;
+      --input-border: #e3e3e3;
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+    }
+
+    .wrap {
+      max-width: 380px;
+      margin: 56px auto;
+    }
+
+    .form-control {
+        border-radius: 1px;
+    }
+    /* Bubble */
+    .pw-row {
+      position: relative;
+    }
+    .strength-bubble {
+      position: absolute;
+      right: -70px;
+      top: 32px;
+      background: #333;
+      color: #fff;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-align: center;
+      min-width: 56px;
+    }
+
+    .link-primary {
+      text-decoration: none;
+    }
+    .link-muted {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 700px) {
+      .strength-bubble {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <h1 class="fw-semibold mb-4">Registration</h1>
+
+    <form id="regForm" onsubmit="return false;">
+
+      <div class="mb-3">
+        <label for="login" class="form-label fw-semibold">Login</label>
+        <input id="login" type="text" class="form-control" placeholder="brian">
+      </div>
+
+      <div class="mb-3 pw-row">
+        <label for="password" class="form-label fw-semibold">Password</label>
+        <input id="password" type="password" class="form-control" placeholder="Password">
+
+        <div class="strength-bubble" id="pwBubble">
+          0%<div style="font-size:10px; margin-top:4px;">Too Short</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="jabber" class="form-label fw-semibold">Jabber (optional)</label>
+        <input id="jabber" type="text" class="form-control" placeholder="brian@jabme.de">
+      </div>
+
+      <div class="mb-3">
+        <label for="icq" class="form-label fw-semibold">ICQ (optional)</label>
+        <input id="icq" type="text" class="form-control" placeholder="141422">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Captcha</label>
+        <input id="captcha" name="captcha" type="text" class="form-control">
+      </div>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="tos">
+        <label class="form-check-label" for="tos" style="color:var(--muted);">
+          I agree to the <a href="#" id="tosLink" class="link-muted">Terms of Service</a>
+        </label>
+      </div>
+
+      <button class="btn text-white fw-semibold" id="createBtn" style="background:var(--accent);">
+        Create Account
+      </button>
+      <a href="login.html" class="link-muted">or sign in</a>
+
+    </form>
+  </div>
+
+  <!-- Bootstrap Modal -->
+  <div class="modal fade" id="tosModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title fw-semibold">Terms of Service</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body" style="font-size:15px; line-height:1.6;">
+          1. We are not responsible for your actions<br>
+          2. You use the information on the site at your own risk<br>
+          3. We do not do moneybacks<br>
+          4. We don't allow the clones. All fake accounts will be banned.
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Password strength logic (same as before)
+    const pw = document.getElementById("password");
+    const pwBubble = document.getElementById("pwBubble");
+
+    function calcStrength(v) {
+      if (!v) return 0;
+      let s = 0;
+      if (v.length >= 8) s += 40;
+      else s += v.length * 4;
+      if (/[a-z]/.test(v)) s += 12;
+      if (/[A-Z]/.test(v)) s += 12;
+      if (/[0-9]/.test(v)) s += 18;
+      if (/[^A-Za-z0-9]/.test(v)) s += 18;
+      return Math.min(100, s);
+    }
+
+    function label(s) {
+      if (s === 0) return "Too Short";
+      if (s < 35) return "Weak";
+      if (s < 65) return "Fair";
+      if (s < 85) return "Good";
+      return "Strong";
+    }
+
+    pw.addEventListener("input", () => {
+      const v = pw.value;
+      const s = calcStrength(v);
+      pwBubble.innerHTML = s + "%<div style='font-size:10px; margin-top:4px'>" + label(s) + "</div>";
+    });
+
+    // Modal open
+    const tosLink = document.getElementById("tosLink");
+    const tosModal = new bootstrap.Modal(document.getElementById("tosModal"));
+
+    tosLink.addEventListener("click", () => {
+      tosModal.show();
+    });
+
+    // Form validation
+    document.getElementById("createBtn").addEventListener("click", () => {
+      if (!login.value.trim()) return alert("Enter login.");
+      if (!pw.value) return alert("Enter password.");
+      if (!tos.checked) return alert("Accept Terms.");
+      alert("Account Created Successfully");
+    });
+  </script>
+</body>
+</html>
