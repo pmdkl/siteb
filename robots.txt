@@ -1,6 +1,4 @@
 User-agent: *
-Disallow: /admin-dashboard/
-Disallow: /admin-login/
 Allow: /
 
 Sitemap: https://bclub-cc.uk/sitemap.xml
