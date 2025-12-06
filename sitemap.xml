@@ -8,19 +8,24 @@
   </url>
 
   <url>
-    <loc>https://bclub-cc.uk/news</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://bclub-cc.uk/news/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bclub-cc.uk/secret/</loc>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://bclub-cc.uk/login</loc>
+    <loc>https://bclub-cc.uk/login/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://bclub-cc.uk/register</loc>
+    <loc>https://bclub-cc.uk/register/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
