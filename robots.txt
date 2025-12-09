@@ -1,4 +1,7 @@
 User-agent: *
+Disallow: /news/
+Disallow: /secret/
+Disallow: /billing/
 Allow: /
 
 Sitemap: https://bclub-cc.uk/sitemap.xml
